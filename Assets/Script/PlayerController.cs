@@ -24,7 +24,7 @@ public class PlayerController : MonoBehaviour
 
     public int MaxBomb;
 
-
+    int ExplodeRadius = 1;
 
     bool Ground;
 
@@ -125,7 +125,7 @@ public class PlayerController : MonoBehaviour
         SceneManager.LoadScene("GameOverScene");
 
     }
-    private void OnTriggerEnter(Collider other)
+    public void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("MagicalSapphireItem"))
         {
@@ -134,42 +134,20 @@ public class PlayerController : MonoBehaviour
 
         if (other.gameObject.CompareTag("MagicalRubyItem"))
         {
-            GameObject SmallExplosionEffect = GameObject.FindGameObjectWithTag("SmallExplosionEffect");
+            AddExplode();
 
-            StartCoroutine(AddExplode(Vector3.forward));
-            StartCoroutine(AddExplode(Vector3.right));
-            StartCoroutine(AddExplode(Vector3.back));
-            StartCoroutine(AddExplode(Vector3.left));
-
+            
         }
 
     }
-    public IEnumerator AddExplode(Vector3 direction)
+    public void AddExplode()
     {
-        for (int i = 1; i < 5+ 5; i++)
+        
+        Vector3 direction = transform.position;
+        for (int ExplodeRadius = 1; ExplodeRadius < 5 + 5; ExplodeRadius++)
         {
-            
-
-            RaycastHit hit;
-
-            Physics.Raycast(transform.position + new Vector3(0, 1.0f, 0), direction, out hit, i);
-
-
-
 
             //Debug.Log("ボムスクリプトとつながってますか？");
-
-
-
-
-
-
-
-
-
-            yield return new WaitForSeconds(0.05f);
-
-
 
         }
 

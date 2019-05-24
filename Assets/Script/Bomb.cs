@@ -19,7 +19,7 @@ public class Bomb : MonoBehaviour
     public float radius = 100.0f;
     public float power = 200.0f;
 
-
+    int ExplodeRadius = 1;
 
     public List<GameObject> smalls = new List<GameObject>();
 
@@ -109,18 +109,22 @@ public class Bomb : MonoBehaviour
 
     public void AddExplode()
     {
-          
-        if (Player = GameObject.FindGameObjectWithTag("Player"))
-        {
+
+       
             pCon = Player.GetComponent<PlayerController>();
-          AddExplode();
+       
+        pCon.AddExplode();
+        Vector3 direction = transform.position;
         
-            Debug.Log("ボムスクリプトとつながってますか？");
-        }
+            for (int ExplodeRadius = 1; ExplodeRadius < 5 + 5; ExplodeRadius++)
+            {
+                Debug.Log("ボムスクリプトとつながってますか？");
+            }
 
-
+       
     }
     }
+    
 
 
 

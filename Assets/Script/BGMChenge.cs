@@ -7,9 +7,9 @@ public class BGMChenge : MonoBehaviour
     GameObject[] PirateGhostObjects;
     private AudioSource audioSource;
     public AudioClip PirateCaveBGM;
-    public AudioClip GhostMasterBGM;
     public GameObject PirateGhost;
-    public GameObject PirateGhost2;
+    public AudioClip GhostMasterBGM;
+    bool aaa;
 
     int GhostCount;
     
@@ -25,13 +25,15 @@ public class BGMChenge : MonoBehaviour
     void Update()
     {
         PirateGhostObjects = GameObject.FindGameObjectsWithTag("PirateGhost");
+        
 
-
-        if (PirateGhostObjects.Length == 0)
+        if (PirateGhostObjects.Length == 0 && !aaa)
         {
-        audioSource.Stop();
+            audioSource.Stop();
             audioSource.clip = GhostMasterBGM;
             audioSource.Play();
+            aaa = true;
+           
         }
     }
 }

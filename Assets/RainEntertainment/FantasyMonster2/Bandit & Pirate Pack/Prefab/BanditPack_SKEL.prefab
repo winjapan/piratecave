@@ -437,9 +437,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ced2d81e723847446a7f390b1ebf0110, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 9
-  BombPrefab: {fileID: 7353248380258865883, guid: ade264da4c961fb43a4eafaf5220b48b,
-    type: 3}
+  speed: 8
+  BombPrefab: {fileID: 0}
   PirateGhost: {fileID: 0}
   sword: {fileID: 8300000, guid: 5829b29c8e11cb144bcb47ea43213221, type: 3}
   death: {fileID: 8300000, guid: b6115161b94b33a4fa416fb818b47dc9, type: 3}
@@ -448,7 +447,9 @@ MonoBehaviour:
   MagicalSapphireItem: {fileID: 0}
   SmallExplosionEffect: {fileID: 0}
   Treasure: {fileID: 0}
-  MaxBomb: 2
+  MaxBomb: 1
+  EffectPower: 200
+  EffectRadius: 100
 --- !u!1 &1000011468437136
 GameObject:
   m_ObjectHideFlags: 0

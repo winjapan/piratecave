@@ -19,8 +19,6 @@ public class Bomb : MonoBehaviour
     public float radius = 100.0f;
     public float power = 200.0f;
 
-    int ExplodeRadius = 1;
-
     public List<GameObject> smalls = new List<GameObject>();
 
 
@@ -30,8 +28,9 @@ public class Bomb : MonoBehaviour
         Invoke("Explode", 1.0f);
 
         rgbody = GetComponent<Rigidbody>();
-      
+
         Player = GameObject.Find("Player");
+
 
 
     }
@@ -46,7 +45,7 @@ public class Bomb : MonoBehaviour
     {
 
         GameObject small = Instantiate(SmallExplosionEffect, transform.position, Quaternion.identity) as GameObject;
-        Destroy(small, 0.5f);
+        Destroy(small, 1.5f);
         GetComponent<MeshRenderer>().enabled = false;
         exploded = true;
         StartCoroutine(CleateExplode(Vector3.forward));
@@ -54,76 +53,98 @@ public class Bomb : MonoBehaviour
         StartCoroutine(CleateExplode(Vector3.back));
         StartCoroutine(CleateExplode(Vector3.left));
 
-        Destroy(this.gameObject, 0.5f);
+        Destroy(this.gameObject, 1.0f);
     }
 
+    
 
 
-    private IEnumerator CleateExplode(Vector3 direction)
+
+
+    public IEnumerator CleateExplode(Vector3 direction)
     {
 
-        for (int i = 1; i < 5; i++)
+
+        for (int i = 0; i < 5+ EffectPower; i++)
         {
-            
+
             RaycastHit hit;
 
             Physics.Raycast(transform.position + new Vector3(0, 1.0f, 0), direction, out hit, i);
-            //Debug.Log("smalls.Length");
-           
+
+            if (Player.gameObject.layer == LayerMask.NameToLayer("PowerUp"))
+            {
+                pCon = GetComponent<PlayerController>();
+
+                AddExplode();
+
+            }
+
 
 
             if (!hit.collider)
-                {
-                    GameObject small = Instantiate(SmallExplosionEffect, transform.position + (i * direction), SmallExplosionEffect.transform.rotation) as GameObject;
-                    Destroy(small, 0.5f);
+            {
+                GameObject small = Instantiate(SmallExplosionEffect, transform.position + (i * direction), SmallExplosionEffect.transform.rotation) as GameObject;
+                Destroy(small, 1.5f);
 
 
 
-                } else
-                {
-                    break;
-                }
+            }
+            else
+            {
+                break;
+            }
 
 
-           
+
 
 
             yield return new WaitForSeconds(0.05f);
 
 
 
-            }
         }
+    }
 
 
-        private void OnTriggerEnter(Collider other)
+    private void OnTriggerEnter(Collider other)
+    {
+        if (!exploded && other.CompareTag("Explosion"))
         {
-            if (!exploded && other.CompareTag("Explosion"))
-            {
-                CancelInvoke("Exploade");
+            CancelInvoke("Exploade");
 
-                Explode();
-            }
-
+            Explode();
         }
+
+    }
+
+    int EffectPower;
 
     public void AddExplode()
     {
+        EffectPower = 10;
+       
 
-       
-            pCon = Player.GetComponent<PlayerController>();
-       
-        pCon.AddExplode();
         Vector3 direction = transform.position;
-        
-            for (int ExplodeRadius = 1; ExplodeRadius < 5 + 5; ExplodeRadius++)
-            {
-                Debug.Log("ボムスクリプトとつながってますか？");
-            }
+        for (int i = 1; i < EffectPower; i++)
+        {
 
-       
+
+
+            Physics.Raycast(transform.position + new Vector3(0, 1.0f, 0), direction, out hit, i);
+           
+        }
     }
-    }
+}
+
+    
+
+
+    
+
+
+    
+    
     
 
 

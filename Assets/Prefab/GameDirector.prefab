@@ -1,0 +1,86 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &6491208292752889743
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6491208292752889742}
+  - component: {fileID: 6491208292752889737}
+  - component: {fileID: 6491208292752889736}
+  m_Layer: 0
+  m_Name: GameDirector
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6491208292752889742
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6491208292752889743}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -15.5, y: 0, z: -22}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &6491208292752889737
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6491208292752889743}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ec5630114de8f4146b8226ae4238c166, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  GhostMaster: {fileID: 4375513768990944205, guid: d792029d69802114cb68e75a968b4f76,
+    type: 3}
+  PiraeGhost: {fileID: 7189978031964739648, guid: bdbb68829dcea2b4c864d94717f28844,
+    type: 3}
+  PirateGhost2: {fileID: 0}
+  Treasure: {fileID: 0}
+  Box: {fileID: 2932371887081943928, guid: 9aa200bf4be6ba042ab735177e2a5702, type: 3}
+  BMTimer: {fileID: 0}
+  countTime: 160
+  TreasureCount: {fileID: 0}
+--- !u!114 &6491208292752889736
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6491208292752889743}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0942f8331de410e498b25fd7d5efec0c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ObstacleWallPrefab: {fileID: 1816896085, guid: d2174426a5f5dd345ad794bd6c6a2131,
+    type: 3}
+  BoxPrefab: {fileID: 2932371887081943928, guid: 9aa200bf4be6ba042ab735177e2a5702,
+    type: 3}
+  Player: {fileID: 0}
+  PirateGhostPrefab: {fileID: 7189978031964739648, guid: bdbb68829dcea2b4c864d94717f28844,
+    type: 3}
+  GhostMasterPrefab: {fileID: 4375513768990944205, guid: d792029d69802114cb68e75a968b4f76,
+    type: 3}
+  Points: {fileID: 9189087869548490294, guid: 25873f34e09c9e746bbd90a853119c99, type: 3}
+  MagicalRubyItem: {fileID: 5805367874892684271, guid: 4ab64030691715d429c45bb8f7833b11,
+    type: 3}
+  MagicalSapphireItem: {fileID: 2081073476722545736, guid: 3ae339361ff1fe444ba52d06b93e184a,
+    type: 3}
+  TreasureBoxPrefab: {fileID: 2825484903790649912, guid: f3c126e46fff6d64da49f264cd2d3ff8,
+    type: 3}
+  Ground: {fileID: 0}
+  stageScale: 0

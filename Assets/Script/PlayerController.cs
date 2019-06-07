@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
 public class PlayerController : MonoBehaviour
@@ -10,7 +11,7 @@ public class PlayerController : MonoBehaviour
     private Vector3 Player_Pos;
     Animator animator;
     public GameObject BombPrefab;
-    public GameObject PirateGhost;
+    public GameObject[] PirateGhosts;
     public AudioClip sword;
     public AudioClip death;
     public GameObject GhostMaster;
@@ -18,13 +19,13 @@ public class PlayerController : MonoBehaviour
     public GameObject MagicalSapphireItem;
     public GameObject SmallExplosionEffect;
     public GameObject Treasure;
-    Bomb bomb; 
-
+    Bomb bomb;
     RaycastHit hit;
 
     public int MaxBomb;
 
-    int ExplodeRadius = 1;
+    public int EffectPower;
+    public int EffectRadius;
 
     bool Ground;
 
@@ -35,6 +36,8 @@ public class PlayerController : MonoBehaviour
         rgbody = GetComponent<Rigidbody>();
         Player_Pos = GetComponent<Transform>().position;
         animator = GetComponent<Animator>();
+       
+       GameObject BombPrefab = GameObject.Find("BombPrefab");
         animator.SetBool("death", false);
     }
 
@@ -45,7 +48,7 @@ public class PlayerController : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Space))
         {
             DropBombs();
-
+           
 
         }
     }
@@ -87,22 +90,20 @@ public class PlayerController : MonoBehaviour
     {
 
         int BombCount = GameObject.FindGameObjectsWithTag("BombPrefab").Length;
-
+       
         if (BombCount < MaxBomb)
         {
+         
 
 
-
-            if (BombPrefab)
-            {
+               
                 float x = Mathf.RoundToInt(transform.position.x);
                 float z = Mathf.RoundToInt(transform.position.z);
                 transform.position = new Vector3(x, 0, z);
 
                 Instantiate(BombPrefab, transform.position, BombPrefab.transform.rotation);
+                
 
-
-            }
 
 
         }
@@ -110,21 +111,18 @@ public class PlayerController : MonoBehaviour
 
     public void OnCollisionEnter(Collision other)
     {
-        if (other.gameObject.CompareTag("GhostMaster"))
+        if (other.gameObject.CompareTag("SmallExplosionEffect"))
         {
-
-            Invoke("DelayMethod", 0.7f);
-
-
+            SceneManager.LoadScene("GameScene");
         }
 
-    }
-    public void DelayMethod()
-    {
-        animator.SetBool("death", true);
-        SceneManager.LoadScene("GameOverScene");
+        
+
 
     }
+
+
+
     public void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("MagicalSapphireItem"))
@@ -134,25 +132,31 @@ public class PlayerController : MonoBehaviour
 
         if (other.gameObject.CompareTag("MagicalRubyItem"))
         {
+            this.gameObject.layer = LayerMask.NameToLayer("PowerUp");
+
+            EffectPower = 10;
+            EffectRadius = 0;
             AddExplode();
 
-            
         }
 
     }
+
+    
     public void AddExplode()
     {
-        
+        bomb = GetComponent<Bomb>();
         Vector3 direction = transform.position;
-        for (int ExplodeRadius = 1; ExplodeRadius < 5 + 5; ExplodeRadius++)
+        for (int i = 1; i < EffectPower; i++)
         {
 
-            //Debug.Log("ボムスクリプトとつながってますか？");
 
+
+            Physics.Raycast(transform.position + new Vector3(0, 1.0f, 0), direction, out hit, i);
+           
         }
-
     }
-}
+    }
 
   
    
